@@ -2,8 +2,8 @@
 
 if [ -z "$API_KEY" ] || [ -z "$API_SECRET" ]
 then
-  export API_KEY=
-  export API_SECRET=
+  export API_KEY=45713882
+  export API_SECRET=e6e13f083a2bbeea27dd6df7d6789152de13ac4f
 fi
 
 if [ -d "cache" ]
@@ -11,4 +11,4 @@ then
   rm -rf cache/
 fi
 
-php -S localhost:8080 -t web web/index.php
+php -S neurno.com:8080 -t web web/index.php

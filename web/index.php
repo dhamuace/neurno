@@ -21,6 +21,9 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
     return false;
 }
 
+putenv('API_KEY=45713882');
+putenv('API_SECRET=e6e13f083a2bbeea27dd6df7d6789152de13ac4f');
+
 // Verify that the API Key and API Secret are defined
 if (!(getenv('API_KEY') && getenv('API_SECRET'))) {
     die('You must define an API_KEY and API_SECRET in the run-demo file');
@@ -39,7 +42,7 @@ $app->container->singleton('cache', function() {
 
 // Initialize OpenTok instance, store it in the app contianer
 $app->container->singleton('opentok', function () {
-    return new OpenTok(getenv('API_KEY'), getenv('API_SECRET'));
+    return new OpenTok(getenv('API_KEY') , getenv('API_SECRET'));
 });
 // Store the API Key in the app container
 $app->apiKey = getenv('API_KEY');
@@ -113,7 +116,7 @@ $app->get('/download/:archiveId', function ($archiveId) use ($app) {
 $app->post('/start', function () use ($app, $sessionId) {
 
     $archive = $app->opentok->startArchive($sessionId, array(
-      'name' => "PHP Archiving Sample App",
+      'name' => "Test By Dhamu",
       'hasAudio' => ($app->request->post('hasAudio') == 'on'),
       'hasVideo' => ($app->request->post('hasVideo') == 'on'),
       'outputMode' => ($app->request->post('outputMode') == 'composed' ? OutputMode::COMPOSED : OutputMode::INDIVIDUAL)
